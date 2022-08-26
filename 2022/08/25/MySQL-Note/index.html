@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="MySQL【第二章】在单一表格中检索数据Retrieving Data From a Single Table (时长53分钟) 1. 选择语句The SELECT Statement (5:50) 导航 第1节先看一下选择语句整体是什么样子，本章后面的小节会分别讲解其中各子句的具体写法 实例 123456789101112USE sql_store;SELECT * &#x2F; 1, 2  -- 纵向筛">
+  <meta name="description" content="MySQLMySQL基本操作笔记">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySQL Note">
 <meta property="og:url" content="http://example.com/2022/08/25/MySQL-Note/index.html">
 <meta property="og:site_name" content="Jupiter">
-<meta property="og:description" content="MySQL【第二章】在单一表格中检索数据Retrieving Data From a Single Table (时长53分钟) 1. 选择语句The SELECT Statement (5:50) 导航 第1节先看一下选择语句整体是什么样子，本章后面的小节会分别讲解其中各子句的具体写法 实例 123456789101112USE sql_store;SELECT * &#x2F; 1, 2  -- 纵向筛">
+<meta property="og:description" content="MySQLMySQL基本操作笔记">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://pic2.zhimg.com/80/v2-a11c4204c4167ec84b1b832ef4b8a0c1_1440w.jpg">
 <meta property="og:image" content="https://pic1.zhimg.com/80/v2-aab2261da97eb2bb00a3bc6049a73e34_1440w.jpg">
@@ -39,7 +39,7 @@
 <meta property="og:image" content="https://pic4.zhimg.com/80/v2-1c3e74aa8f33b7843af8badd75cb08ef_1440w.jpg">
 <meta property="og:image" content="https://pic4.zhimg.com/80/v2-26ae5dad7c73f9af91ccde2f4bd5dc5b_1440w.jpg">
 <meta property="article:published_time" content="2022-08-25T11:19:59.000Z">
-<meta property="article:modified_time" content="2022-08-26T05:18:13.639Z">
+<meta property="article:modified_time" content="2022-08-26T06:30:05.372Z">
 <meta property="article:author" content="Jupiter">
 <meta property="article:tag" content="Note">
 <meta name="twitter:card" content="summary">
@@ -208,7 +208,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-08-26 13:18:13" itemprop="dateModified" datetime="2022-08-26T13:18:13+08:00">2022-08-26</time>
+                <time title="Modified: 2022-08-26 14:30:05" itemprop="dateModified" datetime="2022-08-26T14:30:05+08:00">2022-08-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -231,7 +231,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h1><h1 id="【第二章】在单一表格中检索数据"><a href="#【第二章】在单一表格中检索数据" class="headerlink" title="【第二章】在单一表格中检索数据"></a>【第二章】在单一表格中检索数据</h1><p>Retrieving Data From a Single Table (时长53分钟)</p>
+        <h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h1><p>MySQL基本操作笔记</p>
+<span id="more"></span>
+
+
+
+<h1 id="【第二章】在单一表格中检索数据"><a href="#【第二章】在单一表格中检索数据" class="headerlink" title="【第二章】在单一表格中检索数据"></a>【第二章】在单一表格中检索数据</h1><p>Retrieving Data From a Single Table (时长53分钟)</p>
 <h2 id="1-选择语句"><a href="#1-选择语句" class="headerlink" title="1. 选择语句"></a>1. 选择语句</h2><p>The SELECT Statement (5:50)</p>
 <p><strong>导航</strong></p>
 <p>第1节先看一下选择语句整体是什么样子，本章后面的小节会分别讲解其中各子句的具体写法</p>
@@ -2988,20 +2993,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
