@@ -28,7 +28,7 @@
 <meta property="og:description" content="准备先做哈希表 回头再做链表">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-09-01T09:40:13.000Z">
-<meta property="article:modified_time" content="2022-09-01T09:42:50.727Z">
+<meta property="article:modified_time" content="2022-09-03T09:20:54.062Z">
 <meta property="article:author" content="Jupiter">
 <meta property="article:tag" content="刷题笔记">
 <meta name="twitter:card" content="summary">
@@ -184,10 +184,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2022-09-01 17:40:13 / Modified: 17:42:50" itemprop="dateCreated datePublished" datetime="2022-09-01T17:40:13+08:00">2022-09-01</time>
+              <time title="Created: 2022-09-01 17:40:13" itemprop="dateCreated datePublished" datetime="2022-09-01T17:40:13+08:00">2022-09-01</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-09-03 17:20:54" itemprop="dateModified" datetime="2022-09-03T17:20:54+08:00">2022-09-03</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -212,10 +218,26 @@
         <p>准备先做哈希表 回头再做链表</p>
 <span id="more"></span>
 
-<p>242-有效的字母异位词</p>
-<p>用26个数组下标标记 出现一次该位+1 第二个字符串出现一次该位-1</p>
+<h2 id="242-有效的字母异位词"><a href="#242-有效的字母异位词" class="headerlink" title="242-有效的字母异位词"></a>242-有效的字母异位词</h2><p>用26个数组下标标记 出现一次该位+1 第二个字符串出现一次该位-1</p>
 <p>最后不为0的话就不是异位词</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isAnagram</span><span class="params">(String s, String t)</span> &#123;</span><br><span class="line">        <span class="type">int</span>[] record = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">26</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">char</span> c : s.toCharArray()) &#123;</span><br><span class="line">            record[c - <span class="string">&#x27;a&#x27;</span>] += <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">char</span> c : t.toCharArray()) &#123;</span><br><span class="line">            record[c - <span class="string">&#x27;a&#x27;</span>] -= <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i : record) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i != <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="1002-查找共用字符"><a href="#1002-查找共用字符" class="headerlink" title="1002-查找共用字符"></a>1002-查找共用字符</h2><p>思路</p>
+<ol>
+<li>用数组记录每一个单词中字母出现的个数（利用数组下标表示字母）</li>
+<li>三个数组取同一下标的最小值，即为共同字符出现的次数</li>
+<li>遍历输出</li>
+</ol>
+<p>实现时的注意点</p>
+<ol>
+<li><p>用一个长度26的数组记录第一个字符串，另一个记录后面的</p>
+<p>取最小值再放回第一个数组即可</p>
+</li>
+<li><p>输出时使用while（值&gt;1）{</p>
+<p>输出完讲值–}</p>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> List&lt;String&gt; <span class="title function_">commonChars</span><span class="params">(String[] words)</span> &#123;</span><br><span class="line">        List&lt;String&gt; record = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        <span class="type">char</span> a;</span><br><span class="line">        <span class="type">int</span>[] recordStr = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">26</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">char</span> c : words[<span class="number">0</span>].toCharArray()) &#123;</span><br><span class="line">            recordStr[c - <span class="string">&#x27;a&#x27;</span>] += <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span>[] recordResult = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">26</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; words.length; i++) &#123;</span><br><span class="line">            <span class="type">int</span>[] recordOtherStr = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">26</span>];</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> (<span class="type">char</span> c : words[i].toCharArray()) &#123;</span><br><span class="line">                recordOtherStr[c-<span class="string">&#x27;a&#x27;</span>]+=<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; <span class="number">26</span>; j++) &#123;</span><br><span class="line">                recordStr[j]=Math.min(recordStr[j],recordOtherStr[j]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">26</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">while</span> (recordStr[i] &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                a = (<span class="type">char</span>) (i + <span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">                recordStr[i]--;</span><br><span class="line">                record.add(String.valueOf(a));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> record;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
     </div>
@@ -300,6 +322,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#242-%E6%9C%89%E6%95%88%E7%9A%84%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D"><span class="nav-number">1.</span> <span class="nav-text">242-有效的字母异位词</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1002-%E6%9F%A5%E6%89%BE%E5%85%B1%E7%94%A8%E5%AD%97%E7%AC%A6"><span class="nav-number">2.</span> <span class="nav-text">1002-查找共用字符</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
