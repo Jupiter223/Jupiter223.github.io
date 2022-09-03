@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="开始写繁育中心项目,首先做了登录功能,参数校验用了JSR303.所以搬运一下当时JSR303的笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JSR303">
+<meta property="og:url" content="http://example.com/2022/09/03/JSR303/index.html">
+<meta property="og:site_name" content="Jupiter">
+<meta property="og:description" content="开始写繁育中心项目,首先做了登录功能,参数校验用了JSR303.所以搬运一下当时JSR303的笔记">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-09-03T08:21:33.000Z">
+<meta property="article:modified_time" content="2022-09-03T08:23:11.733Z">
+<meta property="article:author" content="Jupiter">
+<meta property="article:tag" content="项目笔记">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2022/09/03/JSR303/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>JSR303 | Jupiter</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Jupiter</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/03/JSR303/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jupiter">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jupiter">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JSR303
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-09-03 16:21:33 / Modified: 16:23:11" itemprop="dateCreated datePublished" datetime="2022-09-03T16:21:33+08:00">2022-09-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JAVA/" itemprop="url" rel="index"><span itemprop="name">JAVA</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>开始写繁育中心项目,首先做了登录功能,参数校验用了JSR303.所以搬运一下当时JSR303的笔记</p>
+<span id="more"></span>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">JSR303</span><br><span class="line"> *   <span class="number">1</span>）、给Bean添加校验注解:javax.validation.constraints，并定义自己的message提示</span><br><span class="line"> *   <span class="number">2</span>)、开启校验功能<span class="meta">@Valid</span></span><br><span class="line"> *      效果：校验错误以后会有默认的响应；</span><br><span class="line"> *   <span class="number">3</span>）、给校验的bean后紧跟一个BindingResult，就可以获取到校验的结果</span><br><span class="line"> *   <span class="number">4</span>）、分组校验（多场景的复杂校验）</span><br><span class="line"> *         <span class="number">1</span>)、	<span class="meta">@NotBlank(message = &quot;品牌名必须提交&quot;,groups = &#123;AddGroup.class,UpdateGroup.class&#125;)</span></span><br><span class="line"> *          给校验注解标注什么情况需要进行校验</span><br><span class="line"> *         <span class="number">2</span>）、<span class="meta">@Validated(&#123;AddGroup.class&#125;)</span></span><br><span class="line"> *         <span class="number">3</span>)、默认没有指定分组的校验注解<span class="meta">@NotBlank</span>，在分组校验情况<span class="meta">@Validated(&#123;AddGroup.class&#125;)</span>下不生效，只会在<span class="meta">@Validated</span>生效；</span><br><span class="line"> *</span><br><span class="line"> *   <span class="number">5</span>）、自定义校验</span><br><span class="line"> *      <span class="number">1</span>）、编写一个自定义的校验注解</span><br><span class="line"> *      <span class="number">2</span>）、编写一个自定义的校验器 ConstraintValidator</span><br><span class="line"> *      <span class="number">3</span>）、关联自定义的校验器和自定义的校验注解</span><br><span class="line">         *      <span class="meta">@Documented</span></span><br><span class="line">         * <span class="meta">@Constraint(validatedBy = &#123; ListValueConstraintValidator.class【可以指定多个不同的校验器，适配不同类型的校验】 &#125;)</span></span><br><span class="line">         * <span class="meta">@Target(&#123; METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE &#125;)</span></span><br><span class="line">         * <span class="meta">@Retention(RUNTIME)</span></span><br><span class="line">         * <span class="keyword">public</span> <span class="meta">@interface</span> ListValue &#123;</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@TableName(&quot;pms_brand&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BrandEntity</span> <span class="keyword">implements</span> <span class="title class_">Serializable</span> &#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">long</span> <span class="variable">serialVersionUID</span> <span class="operator">=</span> <span class="number">1L</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 品牌id</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="meta">@NotNull(message = &quot;修改必须指定品牌id&quot;,groups = &#123;UpdateGroup.class&#125;)</span></span><br><span class="line">	<span class="meta">@Null(message = &quot;新增不能指定id&quot;,groups = &#123;AddGroup.class&#125;)</span></span><br><span class="line">	<span class="meta">@TableId</span></span><br><span class="line">	<span class="keyword">private</span> Long brandId;</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 品牌名</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="meta">@NotBlank(message = &quot;品牌名必须提交&quot;,groups = &#123;AddGroup.class,UpdateGroup.class&#125;)</span></span><br><span class="line">	<span class="keyword">private</span> String name;</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 品牌logo地址</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="meta">@NotBlank(groups = &#123;AddGroup.class&#125;)</span></span><br><span class="line">	<span class="meta">@URL(message = &quot;logo必须是一个合法的url地址&quot;,groups=&#123;AddGroup.class,UpdateGroup.class&#125;)</span></span><br><span class="line">	<span class="keyword">private</span> String logo;</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 介绍</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">private</span> String descript;</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 显示状态[0-不显示；1-显示]</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line"><span class="comment">//	@Pattern()</span></span><br><span class="line">	<span class="meta">@NotNull(groups = &#123;AddGroup.class, UpdateStatusGroup.class&#125;)</span></span><br><span class="line">  	<span class="meta">@ListValue(vals=&#123;0,1&#125;,groups = &#123;AddGroup.class, UpdateStatusGroup.class&#125;)</span></span><br><span class="line">	<span class="keyword">private</span> Integer showStatus;</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 检索首字母</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="meta">@NotEmpty(groups=&#123;AddGroup.class&#125;)</span></span><br><span class="line">	<span class="meta">@Pattern(regexp=&quot;^[a-zA-Z]$&quot;,message = &quot;检索首字母必须是一个字母&quot;,groups=&#123;AddGroup.class,UpdateGroup.class&#125;)</span></span><br><span class="line">	<span class="keyword">private</span> String firstLetter;</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 排序</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="meta">@NotNull(groups=&#123;AddGroup.class&#125;)</span></span><br><span class="line">	<span class="meta">@Min(value = 0,message = &quot;排序必须大于等于0&quot;,groups=&#123;AddGroup.class,UpdateGroup.class&#125;)</span></span><br><span class="line">	<span class="keyword">private</span> Integer sort;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.atguigu.common.valid;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.validation.ConstraintValidator;</span><br><span class="line"><span class="keyword">import</span> javax.validation.ConstraintValidatorContext;</span><br><span class="line"><span class="keyword">import</span> java.util.HashSet;</span><br><span class="line"><span class="keyword">import</span> java.util.Set;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ListValueConstraintValidator</span> <span class="keyword">implements</span> <span class="title class_">ConstraintValidator</span>&lt;ListValue,Integer&gt; &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Set&lt;Integer&gt; set = <span class="keyword">new</span> <span class="title class_">HashSet</span>&lt;&gt;();</span><br><span class="line">    <span class="comment">//初始化方法</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">initialize</span><span class="params">(ListValue constraintAnnotation)</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span>[] vals = constraintAnnotation.vals();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> val : vals) &#123;</span><br><span class="line">            set.add(val);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//判断是否校验成功</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> value 需要校验的值</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> context</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isValid</span><span class="params">(Integer value, ConstraintValidatorContext context)</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> set.contains(value);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line">空检查</span><br><span class="line"></span><br><span class="line"><span class="meta">@Null</span>       验证对象是否为<span class="literal">null</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@NotNull</span>    验证对象是否不为<span class="literal">null</span>, 无法查检长度为<span class="number">0</span>的字符串</span><br><span class="line"></span><br><span class="line"><span class="meta">@NotBlank</span> 检查约束字符串是不是Null还有被Trim的长度是否大于<span class="number">0</span>,只对字符串,且会去掉前后空格.</span><br><span class="line"></span><br><span class="line"><span class="meta">@NotEmpty</span> 检查约束元素是否为NULL或者是EMPTY.</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">Booelan检查</span><br><span class="line"></span><br><span class="line"><span class="meta">@AssertTrue</span>     验证 Boolean 对象是否为 <span class="literal">true</span>  </span><br><span class="line"></span><br><span class="line"><span class="meta">@AssertFalse</span>    验证 Boolean 对象是否为 <span class="literal">false</span>  </span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">长度检查</span><br><span class="line"></span><br><span class="line"><span class="meta">@Size(min=, max=)</span> 验证对象（Array,Collection,Map,String）长度是否在给定的范围之内  </span><br><span class="line"></span><br><span class="line"><span class="meta">@Length(min=, max=)</span> Validates that the annotated string is between min and max included.</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">日期检查</span><br><span class="line"></span><br><span class="line"><span class="meta">@Past</span>           验证 Date 和 Calendar 对象是否在当前时间之前  </span><br><span class="line"></span><br><span class="line"><span class="meta">@Future</span>     验证 Date 和 Calendar 对象是否在当前时间之后  </span><br><span class="line"></span><br><span class="line"><span class="meta">@Pattern</span>    验证 String 对象是否符合正则表达式的规则</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">数值检查，建议使用在Stirng,Integer类型，不建议使用在<span class="type">int</span>类型上，因为表单值为“”时无法转换为<span class="type">int</span>，但可以转换为Stirng为<span class="string">&quot;&quot;</span>,Integer为<span class="literal">null</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@Min</span>            验证 Number 和 String 对象是否大等于指定的值  </span><br><span class="line"></span><br><span class="line"><span class="meta">@Max</span>            验证 Number 和 String 对象是否小等于指定的值  </span><br><span class="line"></span><br><span class="line"><span class="meta">@DecimalMax</span> 被标注的值必须不大于约束中指定的最大值. 这个约束的参数是一个通过BigDecimal定义的最大值的字符串表示.小数存在精度</span><br><span class="line"></span><br><span class="line"><span class="meta">@DecimalMin</span> 被标注的值必须不小于约束中指定的最小值. 这个约束的参数是一个通过BigDecimal定义的最小值的字符串表示.小数存在精度</span><br><span class="line"></span><br><span class="line"><span class="meta">@Digits</span>     验证 Number 和 String 的构成是否合法  </span><br><span class="line"></span><br><span class="line"><span class="meta">@Digits(integer=,fraction=)</span> 验证字符串是否是符合指定格式的数字，interger指定整数精度，fraction指定小数精度。</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"><span class="meta">@Range(min=, max=)</span> 检查数字是否介于min和max之间.</span><br><span class="line"></span><br><span class="line"><span class="meta">@Range(min=10000,max=50000,message=&quot;range.bean.wage&quot;)</span></span><br><span class="line"><span class="keyword">private</span> BigDecimal wage;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"><span class="meta">@Valid</span> 递归的对关联对象进行校验, 如果关联对象是个集合或者数组,那么对其中的元素进行递归校验,如果是一个map,则对其中的值部分进行校验.(是否进行递归验证)</span><br><span class="line"></span><br><span class="line"><span class="meta">@CreditCardNumber</span>信用卡验证</span><br><span class="line"></span><br><span class="line"><span class="meta">@Email</span>  验证是否是邮件地址，如果为<span class="literal">null</span>,不进行验证，算通过验证。</span><br><span class="line"></span><br><span class="line"><span class="meta">@ScriptAssert(lang= ,script=, alias=)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@URL(protocol=,host=, port=,regexp=, flags=)</span></span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0/" rel="tag"># 项目笔记</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/09/01/Leetcode-%E5%93%88%E5%B8%8C%E8%A1%A8/" rel="prev" title="Leetcode 哈希表">
+      <i class="fa fa-chevron-left"></i> Leetcode 哈希表
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/09/03/%E7%B9%81%E8%82%B2%E4%B8%AD%E5%BF%83%E7%AE%A1%E7%90%86%E9%A1%B9%E7%9B%AE-1/" rel="next" title="繁育中心管理项目-1">
+      繁育中心管理项目-1 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Jupiter</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/jupiter223" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;jupiter223" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:oneway8835@gmail.com" title="E-Mail → mailto:oneway8835@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jupiter</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
