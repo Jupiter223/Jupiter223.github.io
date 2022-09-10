@@ -28,7 +28,7 @@
 <meta property="og:description" content="记录一些写项目中的坑。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-09-03T08:23:40.000Z">
-<meta property="article:modified_time" content="2022-09-06T09:21:31.724Z">
+<meta property="article:modified_time" content="2022-09-10T01:13:25.606Z">
 <meta property="article:author" content="Jupiter">
 <meta property="article:tag" content="项目笔记">
 <meta name="twitter:card" content="summary">
@@ -192,7 +192,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-09-06 17:21:31" itemprop="dateModified" datetime="2022-09-06T17:21:31+08:00">2022-09-06</time>
+                <time title="Modified: 2022-09-10 09:13:25" itemprop="dateModified" datetime="2022-09-10T09:13:25+08:00">2022-09-10</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -245,6 +245,19 @@
 <h2 id="DATE类型的转换"><a href="#DATE类型的转换" class="headerlink" title="DATE类型的转换"></a>DATE类型的转换</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@JsonFormat(pattern=&quot;yyyy-MM-dd&quot;,timezone = &quot;GMT+8&quot;)</span></span><br><span class="line"><span class="keyword">public</span> Date <span class="title function_">getBirthday</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> birthday;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@JsonFormat(pattern=&quot;yyyy-MM-dd&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setBirthday</span><span class="params">(Date birthday)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.birthday = birthday;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>其实在前端也统一了一下</p>
+<h2 id="boolean类型的转换"><a href="#boolean类型的转换" class="headerlink" title="boolean类型的转换"></a>boolean类型的转换</h2><p>mysql中是tinyint</p>
+<p>在jdbc url设置中添加&amp;tinyInt1isBit&#x3D;false</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">datasource:</span></span><br><span class="line">    <span class="attr">driver-class-name:</span> <span class="string">com.mysql.cj.jdbc.Driver</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">jdbc:mysql://localhost:3306/avary?serverTimezone=GMT%2B8&amp;tinyInt1isBit=false</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">root</span></span><br><span class="line">    <span class="attr">password:</span> <span class="string">root</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="数据库id和查询到的不一致问题"><a href="#数据库id和查询到的不一致问题" class="headerlink" title="数据库id和查询到的不一致问题"></a>数据库id和查询到的不一致问题</h2><p>碰到一个如上问题,原来数据库id类型是bigint,改成varchar之后解决了,但是还是不知道问题的根源是哪里(待调查)</p>
+<p>这里碰到一个连环坑,改成varchar之后用swagger测试接口没问题了但是前端依然显示id错误,找了一下发现</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">getById</span>(<span class="params">id</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">request</span>(&#123;</span><br><span class="line">        <span class="attr">url</span>: <span class="string">`/service/avary-info/getbyid/<span class="subst">$&#123;id&#125;</span>`</span>,<span class="comment">//此处漏了一个$符号</span></span><br><span class="line">        <span class="attr">method</span>: <span class="string">&#x27;get&#x27;</span>,</span><br><span class="line"></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>还是需要更仔细一些</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1567080064468140000</span><br><span class="line">1567080064468140034</span><br><span class="line">1567135978105643009</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1567080064468140000</span><br><span class="line">1567080064468140000</span><br><span class="line">1567135978105643000</span><br></pre></td></tr></table></figure>
+
 
     </div>
 
@@ -325,7 +338,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BA%E7%8E%B0-Invalid-bound-statement-not-found-%E5%BC%82%E5%B8%B8"><span class="nav-number">1.</span> <span class="nav-text">出现 Invalid bound statement (not found) 异常</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DATE%E7%B1%BB%E5%9E%8B%E7%9A%84%E8%BD%AC%E6%8D%A2"><span class="nav-number">2.</span> <span class="nav-text">DATE类型的转换</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BA%E7%8E%B0-Invalid-bound-statement-not-found-%E5%BC%82%E5%B8%B8"><span class="nav-number">1.</span> <span class="nav-text">出现 Invalid bound statement (not found) 异常</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DATE%E7%B1%BB%E5%9E%8B%E7%9A%84%E8%BD%AC%E6%8D%A2"><span class="nav-number">2.</span> <span class="nav-text">DATE类型的转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#boolean%E7%B1%BB%E5%9E%8B%E7%9A%84%E8%BD%AC%E6%8D%A2"><span class="nav-number">3.</span> <span class="nav-text">boolean类型的转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93id%E5%92%8C%E6%9F%A5%E8%AF%A2%E5%88%B0%E7%9A%84%E4%B8%8D%E4%B8%80%E8%87%B4%E9%97%AE%E9%A2%98"><span class="nav-number">4.</span> <span class="nav-text">数据库id和查询到的不一致问题</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
