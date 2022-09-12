@@ -156,6 +156,92 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/26/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%B8%8E%E5%BC%82%E6%AD%A5%E7%BC%96%E6%8E%92/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jupiter">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jupiter">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/08/26/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%B8%8E%E5%BC%82%E6%AD%A5%E7%BC%96%E6%8E%92/" class="post-title-link" itemprop="url">线程池与异步编排</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-08-26 20:46:50 / Modified: 20:55:37" itemprop="dateCreated datePublished" datetime="2022-08-26T20:46:50+08:00">2022-08-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JAVA/" itemprop="url" rel="index"><span itemprop="name">JAVA</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JAVA/GuliMall/" itemprop="url" rel="index"><span itemprop="name">GuliMall</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="异步与线程池"><a href="#异步与线程池" class="headerlink" title="异步与线程池"></a>异步与线程池</h1><h2 id="初始化线程的4种方式"><a href="#初始化线程的4种方式" class="headerlink" title="初始化线程的4种方式"></a>初始化线程的4种方式</h2><p>1）、继承Thread</p>
+<p>2）、实现Runnable接口</p>
+<p>3）、实现Callable接口+FutureTask（可以拿到返回结果，可以处理异常）</p>
+<p>4）、线程池</p>
+<p>方式1和方式2：主进程无法获取线程的运算结果。不适合当前场景</p>
+<p>方式3：主进程可以获取线程的运算结果，但是不利于控制服务器中的线程资源。可以导致服务器资源耗尽。</p>
+<p>方式4：通过如下两种方式初始化线程池</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Executors.newFiexedThreadPool(<span class="number">3</span>);</span><br><span class="line"><span class="comment">//或者</span></span><br><span class="line"><span class="keyword">new</span> <span class="title class_">ThreadPoolExecutor</span>(corePoolSize,</span><br><span class="line">                 maximumPoolSize,</span><br><span class="line">                 keepAliveTime,</span><br><span class="line">                 TimeUnit</span><br><span class="line">                 unit,</span><br><span class="line">                 workQueue,</span><br><span class="line">                 threadFactory,</span><br><span class="line">                 handler);</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/08/26/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%B8%8E%E5%BC%82%E6%AD%A5%E7%BC%96%E6%8E%92/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/26/today/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -578,7 +664,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-count">16</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
