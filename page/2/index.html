@@ -156,6 +156,172 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/30/Leetcode%20%E9%93%BE%E8%A1%A8-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jupiter">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jupiter">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/08/30/Leetcode%20%E9%93%BE%E8%A1%A8-1/" class="post-title-link" itemprop="url">Leetcode 链表-1</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-08-30 16:30:21" itemprop="dateCreated datePublished" datetime="2022-08-30T16:30:21+08:00">2022-08-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-09-01 21:13:02" itemprop="dateModified" datetime="2022-09-01T21:13:02+08:00">2022-09-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Leetcode 链表-1</p>
+<p>83 删除排序链表中的重复元素</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * public class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode() &#123;&#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val) &#123; this.val = val; &#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val, ListNode next) &#123; this.val = val; this.next = next; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> ListNode <span class="title function_">deleteDuplicates</span><span class="params">(ListNode head)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (head==<span class="literal">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode currentNode=head;</span><br><span class="line">        <span class="keyword">while</span> (currentNode.next!=<span class="literal">null</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span> (currentNode.val==currentNode.next.val)&#123;</span><br><span class="line">                currentNode.next=currentNode.next.next;</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                currentNode=currentNode.next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>也可以用递归</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/29/%E8%AE%A4%E8%AF%81%E6%9C%8D%E5%8A%A1-%E9%AA%8C%E8%AF%81%E7%A0%81%E7%9F%AD%E4%BF%A1-%E7%99%BB%E5%BD%95-%E6%B3%A8%E5%86%8C%E4%B8%8E%E5%88%86%E5%B8%83%E5%BC%8Fsession/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jupiter">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jupiter">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/08/29/%E8%AE%A4%E8%AF%81%E6%9C%8D%E5%8A%A1-%E9%AA%8C%E8%AF%81%E7%A0%81%E7%9F%AD%E4%BF%A1-%E7%99%BB%E5%BD%95-%E6%B3%A8%E5%86%8C%E4%B8%8E%E5%88%86%E5%B8%83%E5%BC%8Fsession/" class="post-title-link" itemprop="url">认证服务-验证码短信 登录 注册与分布式session</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-08-29 20:54:46" itemprop="dateCreated datePublished" datetime="2022-08-29T20:54:46+08:00">2022-08-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-08-30 21:32:31" itemprop="dateModified" datetime="2022-08-30T21:32:31+08:00">2022-08-30</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JAVA/" itemprop="url" rel="index"><span itemprop="name">JAVA</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JAVA/GuliMall/" itemprop="url" rel="index"><span itemprop="name">GuliMall</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="认证服务-验证码短信-登录-注册与分布式session"><a href="#认证服务-验证码短信-登录-注册与分布式session" class="headerlink" title="认证服务-验证码短信 登录 注册与分布式session"></a>认证服务-验证码短信 登录 注册与分布式session</h1><h2 id="短信验证码"><a href="#短信验证码" class="headerlink" title="短信验证码"></a>短信验证码</h2><p>第三方服务 此处使用阿里云</p>
+<h3 id="工具类-HttpUtils"><a href="#工具类-HttpUtils" class="headerlink" title="工具类 HttpUtils"></a>工具类 HttpUtils</h3><p>HttpUtils 请从 <a target="_blank" rel="noopener" href="https://github.com/aliyun/api-gateway-demo-sign-java/blob/master/src/main/java/com/aliyun/api/gateway/demo/util/HttpUtils.java">https://github.com/aliyun/api-gateway-demo-sign-java/blob/master/src/main/java/com/aliyun/api/gateway/demo/util/HttpUtils.java</a></p>
+<p>或者直接下载：<a target="_blank" rel="noopener" href="http://code.fegine.com/HttpUtils.zip">http://code.fegine.com/HttpUtils.zip</a></p>
+<p>之前用阿里云测试写的</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/08/29/%E8%AE%A4%E8%AF%81%E6%9C%8D%E5%8A%A1-%E9%AA%8C%E8%AF%81%E7%A0%81%E7%9F%AD%E4%BF%A1-%E7%99%BB%E5%BD%95-%E6%B3%A8%E5%86%8C%E4%B8%8E%E5%88%86%E5%B8%83%E5%BC%8Fsession/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/28/Leetcode%E5%88%B7%E9%A2%98-%E6%95%B0%E7%BB%84-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1246,187 +1412,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/30/4-6%E6%9C%88%E5%AD%A6%E4%B9%A0%E6%97%A5%E7%A8%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Jupiter">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jupiter">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/06/30/4-6%E6%9C%88%E5%AD%A6%E4%B9%A0%E6%97%A5%E7%A8%8B/" class="post-title-link" itemprop="url">4-6月学习日程</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-06-30 14:35:33" itemprop="dateCreated datePublished" datetime="2022-06-30T14:35:33+08:00">2022-06-30</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-10-01 11:38:39" itemprop="dateModified" datetime="2022-10-01T11:38:39+08:00">2022-10-01</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="4-6月学习日程"><a href="#4-6月学习日程" class="headerlink" title="4-6月学习日程"></a>4-6月学习日程</h1>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/06/30/4-6%E6%9C%88%E5%AD%A6%E4%B9%A0%E6%97%A5%E7%A8%8B/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/12/git/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Jupiter">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jupiter">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/06/12/git/" class="post-title-link" itemprop="url">git笔记</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-06-12 14:35:33" itemprop="dateCreated datePublished" datetime="2022-06-12T14:35:33+08:00">2022-06-12</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-09-30 15:22:31" itemprop="dateModified" datetime="2022-09-30T15:22:31+08:00">2022-09-30</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/git/" itemprop="url" rel="index"><span itemprop="name">git</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>embulk</p>
-<h1 id="git"><a href="#git" class="headerlink" title="git"></a>git</h1><h2 id="git版本控制"><a href="#git版本控制" class="headerlink" title="git版本控制"></a>git版本控制</h2><h2 id="github参与开源项目"><a href="#github参与开源项目" class="headerlink" title="github参与开源项目"></a>github参与开源项目</h2><ol>
-<li><p>原项目点击fork 在自己的账号里新建分支 复制地址</p>
-</li>
-<li><p>电脑中新建文件夹 运行终端 克隆</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone git@github.com:Jupiter223/re01.git .</span><br></pre></td></tr></table></figure>
-
-<p>此时基于自己的仓库 查看</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PS D:\re01&gt; git remote -v</span><br><span class="line">origin  git@github.com:Jupiter223/re01.git (fetch)</span><br><span class="line">origin  git@github.com:Jupiter223/re01.git (push)</span><br></pre></td></tr></table></figure>
-
-<p>去原仓库复制项目链接 添加上游代码</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add upstream https://github.com/midorg-com/re01.git</span><br></pre></td></tr></table></figure>
-
-<p>此时可以查看到</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PS D:\re01&gt; git remote -v</span><br><span class="line">origin  git@github.com:Jupiter223/re01.git (fetch)</span><br><span class="line">origin  git@github.com:Jupiter223/re01.git (push)</span><br><span class="line">upstream        https://github.com/midorg-com/re01.git (fetch)</span><br><span class="line">upstream        https://github.com/midorg-com/re01.git (push)</span><br></pre></td></tr></table></figure>
-
-<p>创建分支</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PS D:\re01&gt; git checkout -b Jupiter</span><br><span class="line">Switched to a new branch &#x27;Jupiter&#x27;</span><br></pre></td></tr></table></figure>
-
-
-</li>
-<li><p>修改后 提交 写提交信息 push</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">PS D:\re01&gt; git add .</span><br><span class="line">PS D:\re01&gt; git commit -m &quot;add(member):Jupiter&quot;</span><br><span class="line">[Jupiter ae9a733] add(member):Jupiter</span><br><span class="line"> 1 file changed, 4 insertions(+)</span><br><span class="line"> create mode 100644 members/jupiter.json</span><br><span class="line">PS D:\re01&gt; git push</span><br><span class="line">fatal: The current branch Jupiter has no upstream branch.</span><br><span class="line">To push the current branch and set the remote as upstream, use</span><br><span class="line"></span><br><span class="line">    git push --set-upstream origin Jupiter</span><br><span class="line">    </span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">PS D:\re01&gt; git push -u origin Jupiter</span><br></pre></td></tr></table></figure>
-
-<p>此时在自己的仓库已经有分支</p>
-</li>
-<li><p>回到原仓库点击pull requests 简称pr</p>
-<p>new pull request!![](D:\前端学习\Typora\屏幕截图 2022-06-12 123236.png)</p>
-</li>
-<li><p>create pull request填写pr信息</p>
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1492,7 +1481,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
